@@ -6,17 +6,27 @@
 <div class="container">
     <div>
         <h1>顔認証</h1>
-        <video id="video" width="720" height="560" autoplay></video>
+        <video id="video" width="720" height="560"></video>
+        <button id="camera-toggle">Toggle Camera</button>
         <script>
             const video = document.getElementById('video');
+            let stream = null;
+            const button = document.getElementById('camera-toggle');
 
-            // Get access to the camera
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-                    video.srcObject = stream;
-                    video.play();
-                });
-            }
+            button.addEventListener('click', function () {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    stream = null;
+                } else {
+                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices.getUserMedia({ video: true }).then(function (s) {
+                            stream = s;
+                            video.srcObject = stream;
+                            video.play();
+                        });
+                    }
+                }
+            });
 
             // Elements for taking the snapshot
             const canvas = document.createElement('canvas');
@@ -24,6 +34,10 @@
 
             // Process frames every 2 seconds
             setInterval(function () {
+                if (!stream) {
+                    return;
+                }
+
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
                 context.drawImage(video, 0, 0, 640, 480);
@@ -53,7 +67,7 @@
                             }
                         }
                     });
-            }, 1000);
+            }, 2000);
         </script>
     </div>
     <div>
