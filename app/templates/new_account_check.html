@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="new_account_check">
+    <h1>登録情報の確認</h1>
+    <div>
+        <div>
+            <p>学籍番号: {{ new_studentnumber }}</p>
+            <p>氏名: {{ new_username }}</p>
+        </div>
+        <img src="{{ image_filename }}" alt="Captured Photo">
+    </div>
+    <div class="collection">
+        <a href="/new_account_re_enter" role="button" class="btn2">戻る</a>
+        <a href="/new_account_complete" role="button" class="btn1">登録</a>
+    </div>
+</div>
+
+{% endblock %}
