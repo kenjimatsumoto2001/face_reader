@@ -7,7 +7,7 @@ import cv2
 import face_recognition
 import numpy as np
 from PIL import Image
-import shutil
+import io
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
@@ -18,11 +18,11 @@ app.config["dbconfig"]={'host': 'mariadb',
                         'database': 'facereader',}
 
 
-#撮影写真の一時保管相対パス
-app.config['KNOWN_FACES_FOLDER_PRE'] = 'static/img_faces_pre'
+#撮影写真の相対パス
+app.config['KNOWN_FACES_FOLDER'] = 'static/img_faces'
+
 ######################################################################################
 #以下ログイン(登録済み)
-app.config['KNOWN_FACES_FOLDER'] = 'static/img_faces'
 
 
 #flagがtrueならwelcome.htmlに画面遷移, falseは/login(GET)を呼ぶ
@@ -128,29 +128,16 @@ def new_account_complete():
 
             SQL = "INSERT INTO Attendance values(null, {}, '{}', now());".format(session['new_studentnumber'], session["new_username"] )
             cursor.execute(SQL)
-
-        # Generate filenames based on the student number and username in session
-        old_filename = f"{session['new_studentnumber']}_{session['new_username']}.jpg"
-        new_filename = old_filename
-
-        # Define the old (current) path and the new path for the file
-        old_path = os.path.join(app.config['KNOWN_FACES_FOLDER_PRE'], old_filename)
-        new_path = os.path.join(app.config['KNOWN_FACES_FOLDER'], new_filename)
-
-        # Move the file from the pre-upload folder to the upload folder
-        shutil.move(old_path, new_path)
-
         return render_template('new_account_welcome.html', new_studentnumber=session["new_studentnumber"], new_username=session["new_username"])
     return redirect('/new_account_create')
 
-#入力確認画面でNOを押した時の動作.全てのセッションをnoneにする
 @app.route('/new_account_re_enter')
 def new_account_re_enter():
     # Generate filename based on the student number and username in session
     filename = f"{session['new_studentnumber']}_{session['new_username']}.jpg"
 
     # Define the path of the file
-    path = os.path.join(app.config['KNOWN_FACES_FOLDER_PRE'], filename)
+    path = os.path.join(app.config['KNOWN_FACES_FOLDER'], filename)
 
     # Check if file exists and remove it
     if os.path.exists(path):
@@ -165,7 +152,6 @@ def new_account_re_enter():
     session["flag"] = False
 
     return redirect("/new_account_create")
-
 #flagがtrueならnew_account_welcome.htmlに画面遷移, falseは/new_account_create(GET)を呼ぶ
 @app.route('/new_account_welcome')
 def new_account_welcome():
@@ -192,7 +178,7 @@ def register():
     filename = f"{session['new_studentnumber']}_{session['new_username']}.jpg"
 
     # Save the image in the known_faces folder
-    with open(os.path.join(app.config['KNOWN_FACES_FOLDER_PRE'], filename), 'wb') as f:
+    with open(os.path.join(app.config['KNOWN_FACES_FOLDER'], filename), 'wb') as f:
         f.write(image_bytes)
 
     # Store the image filename in session
@@ -205,7 +191,7 @@ def register():
 
 @app.route('/new_account_check', methods=['GET'])
 def new_account_check_get():
-    image_filename = url_for('static', filename='img_faces_pre/' + session.get('image_filename'))
+    image_filename = url_for('static', filename='img_faces/' + session.get('image_filename'))
     return render_template('new_account_check.html', 
                            new_studentnumber=session.get('new_studentnumber'), 
                            new_username=session.get('new_username'),
