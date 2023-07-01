@@ -3146,3 +3146,138 @@ uWSGI running as root, you can use --uid/--gid/--chroot options
 gracefully (RE)spawned uWSGI master process (pid: 1)
 spawned uWSGI worker 1 (pid: 20, cores: 1)
 Python auto-reloader enabled
+[uwsgi-python-reloader] module/file app.py has been modified
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 20)...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /var/www
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (:3031)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /var/www/uwsgi.ini
+*** Starting uWSGI 2.0.21 (64bit) on [Sat Jul  1 11:11:56 2023] ***
+compiled with version: 10.2.1 20210110 on 29 June 2023 12:42:25
+os: Linux-5.15.49-linuxkit #1 SMP PREEMPT Tue Sep 13 07:51:32 UTC 2022
+nodename: b7d0b324ce04
+machine: aarch64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /var/www
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited INET address :3031 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.6 (default, Aug 17 2021, 12:26:39)  [GCC 10.2.1 20210110]
+Python main interpreter initialized at 0xaaaafb45f430
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xaaaafb45f430 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 25, cores: 1)
+Python auto-reloader enabled
+[uwsgi-python-reloader] module/file app.py has been modified
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 25)...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /var/www
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (:3031)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /var/www/uwsgi.ini
+*** Starting uWSGI 2.0.21 (64bit) on [Sat Jul  1 11:12:01 2023] ***
+compiled with version: 10.2.1 20210110 on 29 June 2023 12:42:25
+os: Linux-5.15.49-linuxkit #1 SMP PREEMPT Tue Sep 13 07:51:32 UTC 2022
+nodename: b7d0b324ce04
+machine: aarch64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /var/www
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited INET address :3031 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.6 (default, Aug 17 2021, 12:26:39)  [GCC 10.2.1 20210110]
+Python main interpreter initialized at 0xaaaaea5ec470
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xaaaaea5ec470 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 30, cores: 1)
+Python auto-reloader enabled
+[uwsgi-python-reloader] module/file app.py has been modified
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 30)...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /var/www
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (:3031)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /var/www/uwsgi.ini
+*** Starting uWSGI 2.0.21 (64bit) on [Sat Jul  1 11:21:24 2023] ***
+compiled with version: 10.2.1 20210110 on 29 June 2023 12:42:25
+os: Linux-5.15.49-linuxkit #1 SMP PREEMPT Tue Sep 13 07:51:32 UTC 2022
+nodename: b7d0b324ce04
+machine: aarch64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /var/www
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited INET address :3031 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.6 (default, Aug 17 2021, 12:26:39)  [GCC 10.2.1 20210110]
+Python main interpreter initialized at 0xaaaaf1cb94a0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0xaaaaf1cb94a0 pid: 1 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 35, cores: 1)
+Python auto-reloader enabled

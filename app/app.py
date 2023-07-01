@@ -50,7 +50,7 @@ def login_post():
         data = cursor.fetchall()
         #以下はDBと一致しない時の処理
         if data == []:
-            flash('学籍番号が間違っています','ng')
+            flash('学籍番号が間違っているか登録されていません','ng')
             session['flag'] = False
         
         #以下はDBと一致した時の処理

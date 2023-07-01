@@ -59,35 +59,35 @@
                         image: imageData
                     })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.name === 'Unknown') {
-                        console.log('No faces recognized. Continuing video.');
-                    } else {
-                        clearTimeout(timer);
-                        stream.getTracks().forEach(track => track.stop());
-                        stream = null;
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.name === 'Unknown') {
+                            console.log('No faces recognized. Continuing video.');
+                        } else {
+                            clearTimeout(timer);
+                            stream.getTracks().forEach(track => track.stop());
+                            stream = null;
 
-                        var result = confirm(`以下でログインしますがよろしいですか\n\n${data.name}`);
-                        if (result) {
-                            window.location.href = "/ok?name=" + encodeURIComponent(data.name);
-                        }
-                        else {
-                            // If 'No' is selected, reactivate the camera
-                            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                                navigator.mediaDevices.getUserMedia({ video: true }).then(function (s) {
-                                    stream = s;
-                                    video.srcObject = stream;
-                                    video.play();
-                                    timer = setTimeout(function () {
-                                        stream.getTracks().forEach(track => track.stop());
-                                        stream = null;
-                                    }, 60000);
-                                });
+                            var result = confirm(`以下でログインしますがよろしいですか\n\n${data.name}`);
+                            if (result) {
+                                window.location.href = "/ok?name=" + encodeURIComponent(data.name);
+                            }
+                            else {
+                                // If 'No' is selected, reactivate the camera
+                                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                                    navigator.mediaDevices.getUserMedia({ video: true }).then(function (s) {
+                                        stream = s;
+                                        video.srcObject = stream;
+                                        video.play();
+                                        timer = setTimeout(function () {
+                                            stream.getTracks().forEach(track => track.stop());
+                                            stream = null;
+                                        }, 60000);
+                                    });
+                                }
                             }
                         }
-                    }
-                });
+                    });
             }, 1000);
         </script>
     </div>
@@ -95,9 +95,18 @@
         <form action="/login" method="post">
             <div>
                 <label for="user">学籍番号</label>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
                 <input type="text" id="user" name="studentnumber">
             </div>
-            <button type="submit">ログイン</button>
+            <button type="submit">ログイン</button>     
         </form>
         <a href="/new_account" class="newaccountbutton">新規登録はこちら</a>
     </div>
