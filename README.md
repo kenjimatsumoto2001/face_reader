@@ -5,7 +5,13 @@
 
 ## セットアップ
 ### Docker Desktop のインストール  
-本プロジェクトはDockerを使用しています。[Docker Desktop](https://www.docker.com/ja-jp/products/docker-desktop/)をインストールしてください。
-不明点があれば[インストール方法(mac)](https://matsuand.github.io/docs.docker.jp.onthefly/desktop/mac/install/)を参照してください。
-### 
+本プロジェクトはDockerを使用しています。[Docker Desktop](https://www.docker.com/ja-jp/products/docker-desktop/)をインストールしてください。  
+不明点があれば[インストール方法(mac)](https://matsuand.github.io/docs.docker.jp.onthefly/desktop/mac/install/)を参照してください。  
+
+
+VScodeを使用する方であれば、拡張機能のDockerをインストールでもいいと思います。
+
+### VScodeでのDocker起動方法
+ターミナルで以下のコードを入力し、Dockerを起動してください。
+
 
