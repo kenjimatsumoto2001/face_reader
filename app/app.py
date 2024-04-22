@@ -306,7 +306,7 @@ def attendance():
         return render_template('attendancelist.html', data = data)
 
 @app.route('/attendance_count')
-def attendance():
+def attendance_count():
     data = []
     with UseDatabase(app.config["dbconfig"]) as cursor:
         attendancelist = "SELECT studentid, name, COUNT(*) AS count FROM Attendance GROUP BY studentid, name"

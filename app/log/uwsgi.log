@@ -3853,3 +3853,63 @@ Python auto-reloader enabled
 [pid: 15|app: -1|req: -1/1] 172.20.0.1 () {56 vars in 1108 bytes} [Mon Apr 22 16:32:27 2024] GET /attendance => generated 21 bytes in 2 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
 --- no python application found, check your startup logs for errors ---
 [pid: 15|app: -1|req: -1/2] 172.20.0.1 () {58 vars in 1129 bytes} [Mon Apr 22 16:32:30 2024] GET /login => generated 21 bytes in 5 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+*** Starting uWSGI 2.0.21 (64bit) on [Mon Apr 22 16:36:33 2024] ***
+compiled with version: 10.2.1 20210110 on 29 June 2023 12:42:25
+os: Linux-5.15.49-linuxkit #1 SMP PREEMPT Tue Sep 13 07:51:32 UTC 2022
+nodename: 9c8eb18284bf
+machine: aarch64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /var/www
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :3031 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.6 (default, Aug 17 2021, 12:26:39)  [GCC 10.2.1 20210110]
+Python main interpreter initialized at 0xaaaae8f41330
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+Traceback (most recent call last):
+  File "app.py", line 309, in <module>
+    def attendance():
+  File "/usr/local/lib/python3.9/site-packages/flask/scaffold.py", line 436, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/usr/local/lib/python3.9/site-packages/flask/scaffold.py", line 51, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1059, in add_url_rule
+    raise AssertionError(
+AssertionError: View function mapping is overwriting an existing endpoint function: attendance
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 10, cores: 1)
+Python auto-reloader enabled
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/1] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:36:41 2024] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/2] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:37:14 2024] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/3] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:37:41 2024] GET / => generated 21 bytes in 2 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/4] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:37:42 2024] GET / => generated 21 bytes in 1 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/5] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:37:42 2024] GET / => generated 21 bytes in 2 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/6] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:39:01 2024] GET / => generated 21 bytes in 1 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 10|app: -1|req: -1/7] 172.22.0.1 () {48 vars in 816 bytes} [Mon Apr 22 16:39:02 2024] GET / => generated 21 bytes in 2 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
