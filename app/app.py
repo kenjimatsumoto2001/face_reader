@@ -304,6 +304,29 @@ def attendance():
 
             data.append((studentnumber, name, date, number, photo))
         return render_template('attendancelist.html', data = data)
+
+@app.route('/attendance_count')
+def attendance():
+    data = []
+    with UseDatabase(app.config["dbconfig"]) as cursor:
+        attendancelist = "SELECT studentid, name, COUNT(*) AS count FROM Attendance GROUP BY studentid, name"
+        cursor.execute(attendancelist)
+        attendancelist = cursor.fetchall()
+        for item in attendancelist:
+            studentnumber = item[0]
+            name = item[1]
+            count = item[2]
+            photo = None  # set default as None
+
+            for filename in os.listdir('static/img_faces/'):
+                split_filename = filename.split('_')  # split the filename
+                
+                if split_filename[0] == str(studentnumber):  # check if it matches the student number
+                    photo = filename  # if it does, save the filename
+                    break
+
+            data.append((studentnumber, name, count, photo))
+        return render_template('attendancelist_count.html', data = data)
     
 @app.route('/attendance_delete_all')
 def delete():
