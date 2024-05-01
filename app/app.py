@@ -6,8 +6,10 @@ import base64
 import cv2
 import face_recognition
 import numpy as np
+from flask_basicauth import BasicAuth
 from PIL import Image
 import io
+from functools import wraps
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
@@ -17,9 +19,21 @@ app.config["dbconfig"]={'host': 'mariadb',
                         'password': 'vsearchpasswd',
                         'database': 'facereader',}
 
+# 認証情報の設定
+app.config['BASIC_AUTH_USERNAME'] = 'silab'
+app.config['BASIC_AUTH_PASSWORD'] = '711711'
+basic_auth = BasicAuth(app)
 
 #撮影写真の相対パス
 app.config['KNOWN_FACES_FOLDER'] = 'static/img_faces'
+
+def authenticated(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        if 'authenticated' not in session:
+            return basic_auth.challenge()
+        return func(*args, **kwargs)
+    return decorated_function
 
 ######################################################################################
 #以下ログイン(登録済み)
@@ -282,7 +296,9 @@ def ok():
         
 ################################################################################################################################################
 @app.route('/attendance')
+@basic_auth.required 
 def attendance():
+    session['authenticated'] = True
     data = []
     with UseDatabase(app.config["dbconfig"]) as cursor:
         attendancelist = "SELECT * FROM Attendance"
@@ -306,10 +322,11 @@ def attendance():
         return render_template('attendancelist.html', data = data)
 
 @app.route('/attendance_count')
+@authenticated
 def attendance_count():
     data = []
     with UseDatabase(app.config["dbconfig"]) as cursor:
-        attendancelist = "SELECT studentid, name, COUNT(*) AS count FROM Attendance GROUP BY studentid, name"
+        attendancelist = "SELECT studentid, name, COUNT(*) AS count FROM Attendance GROUP BY studentid, name ORDER BY count DESC"
         cursor.execute(attendancelist)
         attendancelist = cursor.fetchall()
         for item in attendancelist:
@@ -388,6 +405,7 @@ def Delete_Userlist():
     
 
 @app.route('/Userlist')
+@authenticated
 def list():
     data = []
     with UseDatabase(app.config["dbconfig"]) as cursor:
@@ -422,9 +440,13 @@ def logout_header():
     session.pop("flag", None)
     session["new_studentnumber"] = None
     session["new_username"] = None
-    session["flag"] = False
+    session.pop('authenticated', None)  # セッションをクリア
     return redirect("/login")
 
+@app.errorhandler(401)
+def custom_401(error):
+    flash("Invalid credentials. Please try again.")
+    return redirect("/login")
 
 if __name__ == '__main__':
   app.run(debug=True)
